@@ -17,7 +17,7 @@
         <router-link class="button_middle_inner" to="/projects">프로젝트 &#62</router-link>
       </div>
       <div class="button_middle" @click="$parent.$options.methods.navi_delay">
-        <router-link class="button_middle_inner"  to="/recruit">채용정보 &#62</router-link>
+        <router-link class="button_middle_inner"  to="/about">회사소개 &#62</router-link>
       </div>
     </div>
     <!--Top button - middle menu-->
