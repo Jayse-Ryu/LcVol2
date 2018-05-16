@@ -5,7 +5,7 @@
 
     <!-- Logo Area -->
     <div class="head_logo">
-      <router-link class="head_logo_inner" to="/">LC</router-link>
+      <router-link class="head_logo_inner" to="/">LC Ventures</router-link>
     </div>
 
     <!-- Hamburger Menu Button -->
@@ -48,12 +48,12 @@
   .head_logo {
     position: fixed;
     width: 150px;
-    height: 150px;
+    height: 45px;
     float: left;
     vertical-align: top;
-    line-height: 150px;
+    line-height: 40px;
     text-align: center;
-    font-size: 50px;
+    font-size: 25px;
     color: #fff68f;
     border: 3px solid #fff68f;
     z-index: 5000;
@@ -63,7 +63,6 @@
       background-color: rgba(25, 25, 25, 0.6);
     }
   }
-
   .head_logo_inner {
     display: block;
     width: 100%;
@@ -131,22 +130,6 @@
 
   /* Change Logo Size belongs to web width, and change button gap */
   @media (min-width: 301px) and (max-width: 1000px) {
-    .head_logo {
-      width: 50px;
-      height: 50px;
-      float: left;
-      vertical-align: top;
-      line-height: 50px;
-      text-align: center;
-      font-size: 20px;
-      color: #fff68f;
-      border: 2px solid #fff68f;
-      &:hover {
-        border: 2px solid white;
-        background-color: rgba(25, 25, 25, 0.6);
-      }
-    }
-
     .button_middle {
       width: 90px;
       height: 50px;
@@ -159,21 +142,6 @@
 
   /* When it too much small hidden middle buttons */
   @media (max-width: 500px) {
-    .head_logo {
-      width: 50px;
-      height: 50px;
-      float: left;
-      vertical-align: top;
-      line-height: 50px;
-      text-align: center;
-      font-size: 20px;
-      color: #fff68f;
-      border: 2px solid #fff68f;
-      &:hover {
-        border: 2px solid white;
-        background-color: rgba(25, 25, 25, 0.6);
-      }
-    }
     .button_middle {
       visibility: hidden;
     }
