@@ -533,7 +533,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    transition: all 350ms cubic-bezier(.83,.01,.46,.86);
+    transition: all 370ms cubic-bezier(.83,.01,.46,.86);
   } /* Overall Main Contents Area */
 
   .main_image {

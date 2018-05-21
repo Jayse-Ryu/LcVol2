@@ -62,10 +62,19 @@
             min-width: 250px;
             vertical-align: top;
             padding: 15px 20px;
-            text-align: left;
+            /*text-align: left;*/
           }/*About us actual list*/
         }/*About us lists*/
       }/*About us*/
     }/* Footer wrap */
   }/*Footer*/
+
+  @media (max-width: 850px) {
+    li {
+      width: 100%;
+      vertical-align: top;
+      padding: 15px 20px;
+      text-align: center;
+    }
+  }
 </style>

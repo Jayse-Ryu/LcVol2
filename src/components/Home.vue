@@ -185,7 +185,7 @@
         window.addEventListener('resize', function(e) {
           that.windowWidth = window.innerWidth
         });
-      })
+      });
     }
   }
 </script>
@@ -426,5 +426,6 @@
       color: #efefef;
     }
   }
+
 
 </style>

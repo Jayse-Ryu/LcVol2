@@ -84,6 +84,7 @@
   .section_2 {
     width: 100%;
     background-color: #737751;
+    background-size: cover;
   }
 
   .projects {

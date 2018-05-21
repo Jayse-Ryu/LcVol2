@@ -36,7 +36,7 @@
     <div class="menu_division"></div>
 
     <!-- Nav Category 2 About us -->
-    <ul class="nav_category" @click="$parent.$options.methods.navi_delay">
+    <!--<ul class="nav_category" @click="$parent.$options.methods.navi_delay">
       <li>
         <router-link class="nav_a" to="/news">엘씨 뉴스</router-link>
       </li>
@@ -46,7 +46,7 @@
       <li>
         <router-link class="nav_a" to="/consult">프로젝트 의뢰</router-link>
       </li>
-    </ul>
+    </ul>-->
 
     <div class="menu_division"></div>
 
