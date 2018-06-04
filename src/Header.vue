@@ -8,26 +8,45 @@
       <router-link class="head_logo_inner" to="/">LC Ventures</router-link>
     </div>
 
-    <!-- Hamburger Menu Button -->
-    <div class="button_menu" id="button_menu" @click="$parent.$options.methods.slide_nav"></div>
-
     <!-- Top Buttons (Simple nav button) -->
-    <div class="middle_menu">
+    <div v-if="windowWidth > 650" class="middle_menu">
       <div class="button_middle" @click="$parent.$options.methods.navi_delay">
-        <router-link class="button_middle_inner" to="/projects">프로젝트 &#62</router-link>
+        <router-link class="button_middle_inner"  to="/recruit">RECRUIT</router-link>
       </div>
       <div class="button_middle" @click="$parent.$options.methods.navi_delay">
-        <router-link class="button_middle_inner"  to="/about">회사소개 &#62</router-link>
+        <router-link class="button_middle_inner"  to="/people">PEOPLE</router-link>
+      </div>
+      <div class="button_middle" @click="$parent.$options.methods.navi_delay">
+        <router-link class="button_middle_inner"  to="/projects">PROJECT</router-link>
+      </div>
+      <div class="button_middle" @click="$parent.$options.methods.navi_delay">
+        <router-link class="button_middle_inner" to="/about">COMPANY</router-link>
       </div>
     </div>
     <!--Top button - middle menu-->
+
+    <!-- Hamburger Menu Button -->
+    <div v-else class="button_menu" id="button_menu" @click="$parent.$options.methods.slide_nav"></div>
 
   </header>
 </template>
 
 <script>
   export default {
-    name: "app-header"
+    name: "app-header",
+    data: function() {
+      return {
+        windowWidth: window.innerWidth
+      }
+    },
+    mounted() {
+      let that = this;
+      this.$nextTick(function() {
+        window.addEventListener('resize', function(e) {
+          that.windowWidth = window.innerWidth
+        });
+      });
+    }
   }/*export*/
 </script>
 
@@ -51,15 +70,14 @@
     height: 45px;
     float: left;
     vertical-align: top;
-    line-height: 40px;
+    line-height: 45px;
     text-align: center;
     font-size: 25px;
-    color: #fff68f;
-    border: 3px solid #fff68f;
+    color: #fdfdfd;
     z-index: 5000;
+    border-radius: 4px;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
     &:hover {
-      border: 3px solid white;
       background-color: rgba(25, 25, 25, 0.6);
     }
   }
@@ -67,7 +85,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    color: #fff68f;
+    color: #fdfdfd;
   }
 
   /* Center buttons */
@@ -76,17 +94,19 @@
     width: 100px;
     height: 50px;
     line-height: 53px;
+    text-align: center;
     float: right;
     color: #fff68f;
     z-index: 5000;
-    right: 75px;
+    right: 25px;
   }
 
   .button_middle_inner {
-    color: #fff68f;
+    color: #fdfdfd;
+    font-weight: bold;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
     &:hover {
-      color: white;
+      color: #aeaeae;
     }
   }
 
@@ -97,8 +117,7 @@
     content: '\2630';
     font-size: 35px;
     line-height: 53px;
-    color: #fff68f;
-    transition: all 350ms cubic-bezier(.83,.01,.46,.86);
+    color: #002778;
   }
   .button_menu {
     position: fixed;
@@ -109,9 +128,8 @@
     cursor: pointer;
     margin-left: calc(100% - 100px);
     z-index: 5000;
-    transition: all 350ms cubic-bezier(.83,.01,.46,.86);
     &:hover:before {
-      color: white;
+      color: #d60c47;
     }
   }
 
@@ -127,24 +145,5 @@
   Media query
   ===============================================
   */
-
-  /* Change Logo Size belongs to web width, and change button gap */
-  @media (min-width: 301px) and (max-width: 1000px) {
-    .button_middle {
-      width: 90px;
-      height: 50px;
-      line-height: 53px;
-      right: 40px;
-      float: right;
-      color: #fff68f;
-    }
-  }/*=*/
-
-  /* When it too much small hidden middle buttons */
-  @media (max-width: 500px) {
-    .button_middle {
-      visibility: hidden;
-    }
-  }/*=*/
 
 </style>

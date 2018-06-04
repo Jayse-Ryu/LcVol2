@@ -9,34 +9,34 @@
       <img class="menu_close_image" src="./assets/common/close_btn.png" alt="Navigation close button">
     </div>
 
+    <div class="menu_division" style="margin-top: 35px;"></div>
 
     <!-- Nav Category 1 About Company -->
     <ul class="nav_category" @click="$parent.$options.methods.navi_delay">
       <li>
-        <router-link class="nav_a" to="/">홈</router-link>
+        <router-link class="nav_a" to="/">HOME</router-link>
       </li>
       <li>
-        <router-link class="nav_a" to="/about">회사소개</router-link>
+        <router-link class="nav_a" to="/about">COMPANY</router-link>
       </li>
       <li>
-        <router-link class="nav_a" to="/projects">프로젝트</router-link>
+        <router-link class="nav_a" to="/projects">PROJECT</router-link>
       </li>
       <li>
-        <router-link class="nav_a" to="/people">엘씨 크루</router-link>
+        <router-link class="nav_a" to="/people">PEOPLE</router-link>
       </li>
       <li>
-        <router-link class="nav_a" to="/recruit">채용정보</router-link>
+        <router-link class="nav_a" to="/recruit">RECRUIT</router-link>
       </li>
-      <li>
-        <router-link class="nav_a" to="/contact">연락처</router-link>
-      </li>
-
     </ul>
 
     <div class="menu_division"></div>
 
     <!-- Nav Category 2 About us -->
     <!--<ul class="nav_category" @click="$parent.$options.methods.navi_delay">
+      <li>
+        <router-link class="nav_a" to="/contact">연락처</router-link>
+      </li>
       <li>
         <router-link class="nav_a" to="/news">엘씨 뉴스</router-link>
       </li>
@@ -87,9 +87,9 @@
       .nav_a {
         display: block;
         padding: 4px 8px;
-        color: #efefef;
+        color: #aeaeae;
         &:hover {
-          color: #fff68f;
+          color: #fdfdfd;
         }
       }/*List route links*/
       &:hover {
@@ -101,11 +101,11 @@
       margin: 0 0;
       cursor: pointer;
       background-color: #313131;
-      color: #fff68f;
+      color: #fdfdfd;
       .nav_a {
         display: block;
         padding: 4px 8px;
-        color: #fff68f;
+        color: #fdfdfd;
       }
     }/* Where Am I? class */
   }/*Nav category*/
