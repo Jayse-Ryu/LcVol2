@@ -1,7 +1,7 @@
 <template>
   <!-- Header + Top Buttons -->
   <header class="header"
-          :style="this.$parent.$data.mix_data.slide_mover" id="header">
+          :style="this.$parent.$data.mix_data.slide_mover" id="header" v-bind:style="handleScroll">
 
     <!-- Logo Area -->
     <div class="head_logo">
@@ -14,7 +14,7 @@
         <router-link class="button_middle_inner"  to="/recruit">RECRUIT</router-link>
       </div>
       <div class="button_middle" @click="$parent.$options.methods.navi_delay">
-        <router-link class="button_middle_inner"  to="/people">PEOPLE</router-link>
+        <router-link class="button_middle_inner"  to="/people">MEMBERS</router-link>
       </div>
       <div class="button_middle" @click="$parent.$options.methods.navi_delay">
         <router-link class="button_middle_inner"  to="/projects">PROJECT</router-link>
@@ -46,6 +46,22 @@
           that.windowWidth = window.innerWidth
         });
       });
+    },
+    methods:{
+      handleScroll(event) {
+        let marge = (window.innerHeight - 70);
+        if (document.documentElement.scrollTop > marge){
+          this.$el.style.background = 'rgba(0,0,0,0.7)';
+        } else {
+          this.$el.style.background = '';
+        }
+      }
+    },
+    created() {
+      window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.handleScroll);
     }
   }/*export*/
 </script>
@@ -53,15 +69,16 @@
 <style lang="scss" scoped>
   /* Header Start (logo, button) */
   .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 1px;
-    padding: 25px;
+    //height: 100px;
+    padding: 10px 25px;
     margin-bottom: -50px;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
     overflow: visible;
+    z-index: 9000;
   }
 
   .head_logo {
@@ -91,7 +108,7 @@
   /* Center buttons */
   .button_middle {
     position: relative;
-    width: 100px;
+    width: 120px;
     height: 50px;
     line-height: 53px;
     text-align: center;
@@ -102,8 +119,10 @@
   }
 
   .button_middle_inner {
+    position: fixed;
     color: #fdfdfd;
     font-weight: bold;
+    margin-right: 15px;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
     &:hover {
       color: #aeaeae;
@@ -117,19 +136,20 @@
     content: '\2630';
     font-size: 35px;
     line-height: 53px;
-    color: #002778;
+    color: #fdfdfd;
   }
   .button_menu {
-    position: fixed;
+    position: relative;
     width: 50px;
     height: 50px;
     vertical-align: top;
     text-align: center;
     cursor: pointer;
-    margin-left: calc(100% - 100px);
+    //margin-left: calc(100% - 100px);
     z-index: 5000;
+    float: right;
     &:hover:before {
-      color: #d60c47;
+      color: #aeaeae;
     }
   }
 

@@ -26,8 +26,14 @@
 
     <!-- Main Context on video wrap -->
     <div class="main_title" >
-      <p>유용하고 아름다운 디지털 디자인</p>
-      <p>그리고 커뮤니케이션 마케팅</p>
+      <h2>OPEN MIND</h2>
+      <h3>우리는 개방적입니다.</h3>
+      <div class="division_bar"></div>
+      <p>복층으로 이루어진 색다른 회사 공간에서</p>
+      <p>우리는 서로의 의견을 자유롭게 이야기하고, 각 부서간 원활하게 소통하며 일합니다.</p>
+      <div class="guide_to_scroll">
+        <img class="down_img" src="../assets/common/down.png">
+      </div>
     </div>
 
     <section class="section_1">
@@ -268,35 +274,47 @@
     z-index: 500;
     width: 100%;
     height: 100vh;
-    padding-top: calc(50vh - 25px);
-    color: #fff68f;
+    padding-top: calc(50vh - 65px);
+    color: #fdfdfd;
     text-align: center;
-    font-size: 50px;
-    font-weight: lighter;
     word-break: keep-all;
     white-space: pre-line;
     overflow: hidden;
+    h2 {
+      font-size: 55px;
+      font-weight: bold;
+      margin: 0;
+    }
+    h3 {
+      font-size: 30px;
+      font-weight: normal;
+      margin: 0;
+    }
+    .division_bar {
+      width: 70px;
+      height: 3px;
+      background-color: #fdfdfd;
+      margin: 12px auto 20px;
+    }
+    p {
+      font-size: 16px;
+    }
   }
 
   /* Change Text size belongs to Web width */
-  @media (max-width: 1000px) {
+  @media (max-width: 650px) {
     .main_title {
-      position: relative;
-      top: 0;
-      left: 0;
-      z-index: 400;
-      width: 100%;
-      height: 100vh;
-      padding-top: calc(50vh - 25px);
-      color: #fff68f;
-      text-align: center;
-      font-size: 28px;
-      word-break: keep-all;
-      white-space: pre-line;
-      overflow: hidden;
+      h2 {
+        font-size: 40px;
+      }
+      h3 {
+        font-size: 25px;
+      }
+      p {
+        font-size: 14px;
+      }
     }
   }/*=*/
-
 
   /* Section Part */
 

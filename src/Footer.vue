@@ -18,7 +18,6 @@
         </ul>
       </div>
 
-
     </div><!--Footer wrap-->
 
   </footer>
@@ -84,6 +83,5 @@
         }
       }
     }
-
   }
 </style>

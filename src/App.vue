@@ -569,6 +569,32 @@
     margin: 0;
   } /* Main image sections' innerText belongs to App.vue */
 
+
+  /* Down side arrow with animation */
+  .guide_to_scroll {
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: calc(100vh - 70px);
+  }
+  .down_img {
+    width: 50px;
+    height: 40px;
+    filter: invert(1);
+    animation: down_there 1500ms infinite ease-in-out;
+  }
+  @keyframes down_there {
+    0% {
+      margin-top: 0;
+      opacity: 0;
+    }
+    100% {
+      margin-top: 20px;
+      opacity: 1;
+    }
+  }
+  /* Down arrow end */
+
   @media (max-width: 1100px) {
     .section_0_title {
       font-size: 28px;
