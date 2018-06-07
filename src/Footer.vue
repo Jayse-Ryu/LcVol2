@@ -34,7 +34,7 @@
     position: relative;
     width: 100%;
     padding: 30px 0;
-    background-color: #ffffff;
+    background-color: #efefef;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
 
     .footer_wrap {
@@ -44,6 +44,7 @@
         margin: 0;
         vertical-align: top;
         .footer_logo {
+          font-family: Impact, sans-serif;
           font-size: 35px;
           font-weight: bold;
           padding: 0 30px;
@@ -54,6 +55,7 @@
         display: inline-block;
         margin: 0;
         vertical-align: top;
+        font-family: 'NanumSquare', Impact, sans-serif;
         font-size: 14px;
         color: #212121;
         text-align: left;

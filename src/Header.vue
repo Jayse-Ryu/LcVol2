@@ -124,6 +124,7 @@
     font-weight: bold;
     margin-right: 15px;
     transition: all 350ms cubic-bezier(.83,.01,.46,.86);
+    font-family: Impact, sans-serif;
     &:hover {
       color: #aeaeae;
     }

@@ -44,6 +44,7 @@
 </script>
 
 <style>
+  @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
   /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
   /**
@@ -53,7 +54,7 @@
    */
 
   html {
-    font-family: sans-serif; /* 1 */
+    font-family: Impact, 'NanumSquare', sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
   }
@@ -590,7 +591,7 @@
     }
     100% {
       margin-top: 20px;
-      opacity: 1;
+      opacity: 0.9;
     }
   }
   /* Down arrow end */
@@ -604,3 +605,4 @@
 
 
 </style>
+
