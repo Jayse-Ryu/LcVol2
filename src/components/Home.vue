@@ -44,19 +44,20 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li class="li_1"></li>
-              <li class="li_2" style="background-color: darkblue"></li>
+              <li class="slide_1" v-for="(image, index) in images_1" :id="'1-' + (index+1)">
+                <img :src="image.src" :alt="image.title">
+              </li>
             </ul>
             <div class="img_nav">
-              <button class="prev_button">
+              <button class="prev_button" id="1-prev" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_left.png" alt="Left button">
               </button>
-              <button class="next_button">
+              <button class="next_button" id="1-next" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_right.png" alt="Right button">
               </button>
             </div>
             <div class="img_position">
-              <p>1/10</p>
+              <p>{{ slide_1_flag }}/{{ slide_1_max }}</p>
             </div>
           </div>
           <div class="img_border"></div>
@@ -88,19 +89,20 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li class="li_1"></li>
-              <li class="li_2" style="background-color: darkcyan"></li>
+              <li v-for="(image, index) in images_1" :id="'2-' + (index+1)">
+                <img :src="image.src" :alt="image.title">
+              </li>
             </ul>
             <div class="img_nav">
-              <button class="prev_button">
+              <button class="prev_button" id="2-prev" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_left.png" alt="Left button">
               </button>
-              <button class="next_button">
+              <button class="next_button" id="2-next" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_right.png" alt="Right button">
               </button>
             </div>
             <div class="img_position">
-              <p>1/10</p>
+              <p>{{ slide_2_flag }}/{{ slide_2_max }}</p>
             </div>
           </div>
           <div class="img_border"></div>
@@ -133,19 +135,20 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li class="li_1"></li>
-              <li class="li_2"></li>
+              <li v-for="(image, index) in images_1" :id="'3-' + (index+1)">
+                <img :src="image.src" :alt="image.title">
+              </li>
             </ul>
             <div class="img_nav">
-              <button class="prev_button">
+              <button class="prev_button" id="3-prev" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_left.png" alt="Left button">
               </button>
-              <button class="next_button">
+              <button class="next_button" id="3-next" @click="img_control($event)">
                 <img src="../assets/pages/home/arrow_right.png" alt="Right button">
               </button>
             </div>
             <div class="img_position">
-              <p>1/10</p>
+              <p>{{ slide_3_flag }}/{{ slide_3_max }}</p>
             </div>
           </div>
           <div class="img_border"></div>
@@ -173,6 +176,9 @@
     </section>
     <!--section 3-->
 
+    <!-- Do not delete it. it exist for count image lists -->
+    <input type="hidden" v-bind:value="img_counter(images_1.length, images_2.length, images_3.length)">
+
   </main>
 </template>
 
@@ -181,16 +187,122 @@
     name: "home",
     data: function() {
       return {
-        windowWidth: window.innerWidth
+        windowWidth: window.innerWidth,
+        /* Slider 1 Images. title will be alt */
+        images_1: [
+          {
+            title: 'temp image 1',
+            src: require('../assets/pages/projects/temporary-0.png')
+          },
+          {
+            title: '9999',
+            src: require('../assets/pages/projects/temporary-1.png')
+          },
+          {
+            title: 'temp 3',
+            src: require('../assets/pages/projects/temporary-2.png')
+          }
+        ],
+        /* Slider 2 Images. title will be alt */
+        images_2: [
+          {
+            temp: '0'
+          },
+          {
+            temp: '1'
+          }
+        ],
+        /* Slider 3 Images. title will be alt */
+        images_3: [
+          {
+            temp: '0'
+          }
+        ],
+        /* Image count flags */
+        slide_1_max: 0,
+        slide_1_flag:1,
+
+        slide_2_max: 0,
+        slide_2_flag:1,
+
+        slide_3_max: 0,
+        slide_3_flag:1
       }
     },
     mounted() {
+      /* Calculate browser width for handle video section */
       let that = this;
       this.$nextTick(function() {
         window.addEventListener('resize', function(e) {
           that.windowWidth = window.innerWidth
         });
       });
+    },
+    methods: {
+      img_counter(slider_1, slider_2, slider_3) {
+        /* Set Max flags as belongs to image lists */
+        this.slide_1_max = slider_1;
+        this.slide_2_max = slider_2;
+        this.slide_3_max = slider_3;
+      },
+      img_init: function() {
+
+      },
+      img_control: function(event) {
+        /* Image slider controller */
+        switch (event.currentTarget.id) {
+          case '1-prev' :
+            this.sliding_1('decrease');
+            break;
+          case '1-next' :
+            this.sliding_1('increase');
+            break;
+          case '2-prev' :
+            this.sliding_2('decrease');
+            break;
+          case '2-next' :
+            this.sliding_2('increase');
+            break;
+          case '3-prev' :
+            this.sliding_3('decrease');
+            break;
+          case '3-next' :
+            this.sliding_3('increase');
+            break;
+          default :
+            break;
+        }
+      },
+      sliding_1(option) {
+        if(option === 'decrease' && this.slide_1_flag > 1) {
+          this.slide_1_flag--;
+          console.log(this.slide_1_flag);
+        }
+        else if(option === 'increase' && this.slide_1_flag < this.slide_1_max) {
+          this.slide_1_flag++;
+          console.log(this.slide_1_flag);
+        }
+      },
+      sliding_2(option) {
+        if(option === 'decrease' && this.slide_2_flag > 1) {
+          this.slide_2_flag--;
+          console.log(this.slide_2_flag);
+        }
+        else if(option === 'increase' && this.slide_2_flag < this.slide_2_max) {
+          this.slide_2_flag++;
+          console.log(this.slide_2_flag);
+        }
+      },
+      sliding_3(option) {
+        if(option === 'decrease' && this.slide_3_flag > 1) {
+          this.slide_3_flag--;
+          console.log(this.slide_3_flag);
+        }
+        else if(option === 'increase' && this.slide_3_flag < this.slide_3_max) {
+          this.slide_3_flag++;
+          console.log(this.slide_3_flag);
+        }
+      }
     }
   }
 </script>
@@ -381,6 +493,13 @@
           width: 100%;
           height: 100%;
           background-color: azure;
+          img {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            background-size: cover;
+            object-fit: cover;
+          }
         }
       }
       .img_nav {
