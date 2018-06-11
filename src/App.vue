@@ -528,7 +528,7 @@
     font: 1rem/1.1 'Avenir', Helvetica, Arial, "Montserrat", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
   } /* body normalize more */
 
   .main_role {

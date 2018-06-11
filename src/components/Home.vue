@@ -7,6 +7,7 @@
     <div class="video_wrap" id="video_wrap">
       <div class="video_basket" id="video_basket">
 
+        <!-- Youtube -->
         <!--
         <iframe type="text/html"
                 src="https://www.youtube.com/embed/K0lL1HysGMc?&version=3&autoplay=1&loop=1&playlist=K0lL1HysGMc&showinfo=0&fs=0&disablekb=1&vq=auto&controls=0&rel=0&end=75"
@@ -14,11 +15,13 @@
         </iframe>
         -->
 
+        <!-- Vimeo -->
         <iframe v-if="windowWidth > 750" class="video" id="video"
                 src="https://player.vimeo.com/video/221257502?autoplay=1&loop=1&color=ffffff&background=1&title=0&byline=0&portrait=0&controls=0"
                 width="100%" height="100%" frameborder="0" volume="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
         </iframe>
 
+        <!-- Cover Image when replaced instead video -->
         <img v-else class="video_cover" src="../assets/pages/home/unsplash2.jpg" alt="Main Cover Image" />
 
       </div>
@@ -44,9 +47,11 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li class="slide_1" v-for="(image, index) in images_1" :id="'1-' + (index+1)">
+              <transition name="sliding" v-for="(image, index) in images_1" :key="index">
+              <li class="slide_1" :id="'1-' + (index+1)" v-if="slide_1_flag == (index+1)">
                 <img :src="image.src" :alt="image.title">
               </li>
+              </transition>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="1-prev" @click="img_control($event)">
@@ -89,9 +94,11 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li v-for="(image, index) in images_1" :id="'2-' + (index+1)">
-                <img :src="image.src" :alt="image.title">
-              </li>
+              <transition name="sliding" v-for="(image, index) in images_2" :key="index">
+                <li class="slide_2" :id="'2-' + (index+1)" v-if="slide_2_flag == (index+1)">
+                  <img :src="image.src" :alt="image.title">
+                </li>
+              </transition>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="2-prev" @click="img_control($event)">
@@ -135,9 +142,11 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <li v-for="(image, index) in images_1" :id="'3-' + (index+1)">
-                <img :src="image.src" :alt="image.title">
-              </li>
+              <transition name="sliding" v-for="(image, index) in images_3" :key="index">
+                <li class="slide_3" :id="'3-' + (index+1)" v-if="slide_3_flag == (index+1)">
+                  <img :src="image.src" :alt="image.title">
+                </li>
+              </transition>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="3-prev" @click="img_control($event)">
@@ -206,16 +215,19 @@
         /* Slider 2 Images. title will be alt */
         images_2: [
           {
-            temp: '0'
+            title: 'temp 1',
+            src: require('../assets/pages/projects/temporary-1.png')
           },
           {
-            temp: '1'
+            title: 'temp 2',
+            src: require('../assets/pages/projects/temporary-0.png')
           }
         ],
         /* Slider 3 Images. title will be alt */
         images_3: [
           {
-            temp: '0'
+            title: 'temp 11',
+            src: require('../assets/pages/projects/temporary-2.png')
           }
         ],
         /* Image count flags */
@@ -239,17 +251,18 @@
       });
     },
     methods: {
+      /* Set Max flags as belongs to image lists */
       img_counter(slider_1, slider_2, slider_3) {
-        /* Set Max flags as belongs to image lists */
         this.slide_1_max = slider_1;
         this.slide_2_max = slider_2;
         this.slide_3_max = slider_3;
       },
+      /*test. image init*/
       img_init: function() {
-
+        console.log('test');
       },
+      /* Image slider controller */
       img_control: function(event) {
-        /* Image slider controller */
         switch (event.currentTarget.id) {
           case '1-prev' :
             this.sliding_1('decrease');
@@ -273,38 +286,33 @@
             break;
         }
       },
+      /* Actual function of image slides. */
       sliding_1(option) {
         if(option === 'decrease' && this.slide_1_flag > 1) {
           this.slide_1_flag--;
-          console.log(this.slide_1_flag);
         }
         else if(option === 'increase' && this.slide_1_flag < this.slide_1_max) {
           this.slide_1_flag++;
-          console.log(this.slide_1_flag);
         }
       },
       sliding_2(option) {
         if(option === 'decrease' && this.slide_2_flag > 1) {
           this.slide_2_flag--;
-          console.log(this.slide_2_flag);
         }
         else if(option === 'increase' && this.slide_2_flag < this.slide_2_max) {
           this.slide_2_flag++;
-          console.log(this.slide_2_flag);
         }
       },
       sliding_3(option) {
         if(option === 'decrease' && this.slide_3_flag > 1) {
           this.slide_3_flag--;
-          console.log(this.slide_3_flag);
         }
         else if(option === 'increase' && this.slide_3_flag < this.slide_3_max) {
           this.slide_3_flag++;
-          console.log(this.slide_3_flag);
         }
       }
-    }
-  }
+    }/*methods*/
+  }/*exports*/
 </script>
 
 <style lang="scss" scoped>
@@ -502,6 +510,20 @@
           }
         }
       }
+
+      .sliding-enter-active,
+      .sliding-leave-active {
+        transition: opacity 500ms;
+      }
+      .sliding-leave, sliding-enter-to {
+        opacity: 1;
+      }
+
+      .sliding-enter,
+      .sliding-leave-to{
+        opacity: 0;
+      }
+
       .img_nav {
         position: absolute;
         width: 100%;
