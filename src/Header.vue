@@ -50,10 +50,9 @@
     methods:{
       handleScroll(event) {
         let marge = (window.innerHeight - 70);
-        //console.log(marge + ' marge');
-        // console.log(document.documentElement.scrollTop);
-        // console.log(document.scrollingElement.scrollTop);
-        if (document.scrollingElement.scrollTop > marge){
+        /* (document.documentElement.scrollTop)  Android Chrome Firefox IE */
+        /* (document.scrollingElement.scrollTop) Android Chrome Firefox Safari Edge */
+        if (document.scrollingElement.scrollTop > marge || document.documentElement.scrollTop > marge){
           this.$el.style.background = 'rgba(0,0,0,0.7)';
         } else {
           this.$el.style.background = '';

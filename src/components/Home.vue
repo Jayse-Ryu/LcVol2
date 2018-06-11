@@ -257,10 +257,6 @@
         this.slide_2_max = slider_2;
         this.slide_3_max = slider_3;
       },
-      /*test. image init*/
-      img_init: function() {
-        console.log('test');
-      },
       /* Image slider controller */
       img_control: function(event) {
         switch (event.currentTarget.id) {
