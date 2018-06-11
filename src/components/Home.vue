@@ -47,8 +47,8 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition name="sliding" v-for="(image, index) in images_1" :key="index">
-              <li class="slide_1" :id="'1-' + (index+1)" v-if="slide_1_flag == (index+1)">
+              <transition :name="transition_name" v-for="(image, index) in images_1" :key="index">
+              <li class="slide_1" :id="'1-' + (index+1)" v-show="slide_1_flag == (index+1)">
                 <img :src="image.src" :alt="image.title">
               </li>
               </transition>
@@ -94,8 +94,8 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition name="sliding" v-for="(image, index) in images_2" :key="index">
-                <li class="slide_2" :id="'2-' + (index+1)" v-if="slide_2_flag == (index+1)">
+              <transition :name="transition_name" v-for="(image, index) in images_2" :key="index">
+                <li class="slide_2" :id="'2-' + (index+1)" v-show="slide_2_flag == (index+1)">
                   <img :src="image.src" :alt="image.title">
                 </li>
               </transition>
@@ -142,8 +142,8 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition name="sliding" v-for="(image, index) in images_3" :key="index">
-                <li class="slide_3" :id="'3-' + (index+1)" v-if="slide_3_flag == (index+1)">
+              <transition :name="transition_name" v-for="(image, index) in images_3" :key="index">
+                <li class="slide_3" :id="'3-' + (index+1)" v-show="slide_3_flag == (index+1)">
                   <img :src="image.src" :alt="image.title">
                 </li>
               </transition>
@@ -197,6 +197,7 @@
     data: function() {
       return {
         windowWidth: window.innerWidth,
+        transition_name: 'next',
         /* Slider 1 Images. title will be alt */
         images_1: [
           {
@@ -285,25 +286,31 @@
       /* Actual function of image slides. */
       sliding_1(option) {
         if(option === 'decrease' && this.slide_1_flag > 1) {
+          this.transition_name = 'prev';
           this.slide_1_flag--;
         }
         else if(option === 'increase' && this.slide_1_flag < this.slide_1_max) {
+          this.transition_name = 'next';
           this.slide_1_flag++;
         }
       },
       sliding_2(option) {
         if(option === 'decrease' && this.slide_2_flag > 1) {
+          this.transition_name = 'prev';
           this.slide_2_flag--;
         }
         else if(option === 'increase' && this.slide_2_flag < this.slide_2_max) {
+          this.transition_name = 'next';
           this.slide_2_flag++;
         }
       },
       sliding_3(option) {
         if(option === 'decrease' && this.slide_3_flag > 1) {
+          this.transition_name = 'prev';
           this.slide_3_flag--;
         }
         else if(option === 'increase' && this.slide_3_flag < this.slide_3_max) {
+          this.transition_name = 'next';
           this.slide_3_flag++;
         }
       }
@@ -498,27 +505,56 @@
           height: 100%;
           background-color: azure;
           img {
-            width: 100%;
+            //width: 100%; /*1 if*/
             height: 100%;
             min-height: 100%;
+            transform: translateX(-25%); /*2 else*/
             background-size: cover;
             object-fit: cover;
           }
         }
       }
 
-      .sliding-enter-active,
-      .sliding-leave-active {
-        transition: opacity 500ms;
+      /* Transition Start */
+      .next-enter-active,
+      .next-leave-active {
+        transition: all 700ms ease-in-out;
       }
-      .sliding-leave, sliding-enter-to {
+      .next-enter {
+        opacity: 0;
+        transform: scale(0.8) translateX(100%);
+        filter: brightness(1);
+      }
+      .next-leave, next-enter-to {
         opacity: 1;
+        transform: scale(1) translateX(0%);
+      }
+      .next-leave-to{
+        opacity: 0;
+        transform: scale(1.2) translateX(-100%) translateY(-25%);
+        filter: brightness(1);
       }
 
-      .sliding-enter,
-      .sliding-leave-to{
-        opacity: 0;
+      .prev-enter-active,
+      .prev-leave-active {
+        transition: all 700ms ease-in-out;
+        background-color: #ffffff;
       }
+      .prev-enter {
+        opacity: 0;
+        transform: scale(0.8) translateX(-100%);
+        filter: brightness(1);
+      }
+      .prev-leave, prev-enter-to {
+        opacity: 1;
+        transform: scale(1) translateX(0%);
+      }
+      .prev-leave-to{
+        opacity: 0;
+        transform: scale(1.2) translateX(100%) translateY(-25%);
+        filter: brightness(1);
+      }
+      /* Transition End */
 
       .img_nav {
         position: absolute;
