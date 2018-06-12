@@ -34,24 +34,27 @@
       <div class="division_bar"></div>
       <p>복층으로 이루어진 색다른 회사 공간에서</p>
       <p>우리는 서로의 의견을 자유롭게 이야기하고, 각 부서간 원활하게 소통하며 일합니다.</p>
-      <div class="guide_to_scroll">
-        <img class="down_img" src="../assets/common/down.png">
+      <div class="guide_to_scroll"><!-- style follow in app.vue -->
+        <!--<img class="down_img" src="../assets/common/scroll_down.png" alt="Scroll down image">-->
+        <img class="down_img" src="../assets/pages/home/home_scroll.png" alt="Scroll down image">
       </div>
     </div>
 
     <section class="section_1"><!--make ul list-->
 
-      <div class="culture">Culture</div>
+      <div class="culture">
+        <img src="../assets/pages/home/home_culture.png" alt="Culture">
+      </div>
 
       <div class="culture_wrap">
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition :name="transition_name" v-for="(image, index) in images_1" :key="index">
-              <li class="slide_1" :id="'1-' + (index+1)" v-show="slide_1_flag == (index+1)">
+              <transition-group :name="transition_name">
+              <li class="slide_1" v-for="(image, index) in images_1" :key="index" v-if="slide_1_flag == (index+1)">
                 <img :src="image.src" :alt="image.title">
               </li>
-              </transition>
+              </transition-group>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="1-prev" @click="img_control($event)">
@@ -84,21 +87,19 @@
           <p>Have sense of responsibility</p>
         </div>
       </div>
-
     </section>
     <!--section 1-->
 
     <section class="section_2">
-
       <div class="culture_wrap">
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition :name="transition_name" v-for="(image, index) in images_2" :key="index">
-                <li class="slide_2" :id="'2-' + (index+1)" v-show="slide_2_flag == (index+1)">
+              <transition-group :name="transition_name">
+                <li class="slide_2" v-for="(image, index) in images_2" :key="index" v-if="slide_2_flag == (index+1)">
                   <img :src="image.src" :alt="image.title">
                 </li>
-              </transition>
+              </transition-group>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="2-prev" @click="img_control($event)">
@@ -142,11 +143,11 @@
         <div class="culture_img_wrap">
           <div class="culture_img">
             <ul>
-              <transition :name="transition_name" v-for="(image, index) in images_3" :key="index">
-                <li class="slide_3" :id="'3-' + (index+1)" v-show="slide_3_flag == (index+1)">
+              <transition-group :name="transition_name">
+                <li class="slide_3" v-for="(image, index) in images_3" :key="index" v-if="slide_3_flag == (index+1)">
                   <img :src="image.src" :alt="image.title">
                 </li>
-              </transition>
+              </transition-group>
             </ul>
             <div class="img_nav">
               <button class="prev_button" id="3-prev" @click="img_control($event)">
@@ -201,34 +202,58 @@
         /* Slider 1 Images. title will be alt */
         images_1: [
           {
-            title: 'temp image 1',
-            src: require('../assets/pages/projects/temporary-0.png')
+            title: 'Respect image 1',
+            src: require('../assets/pages/home/image_1/1.png')
           },
           {
-            title: '9999',
-            src: require('../assets/pages/projects/temporary-1.png')
+            title: 'Respect image 2',
+            src: require('../assets/pages/home/image_1/2.png')
           },
           {
-            title: 'temp 3',
-            src: require('../assets/pages/projects/temporary-2.png')
+            title: 'Respect image 3',
+            src: require('../assets/pages/home/image_1/3.png')
+          },
+          {
+            title: 'Respect image 4',
+            src: require('../assets/pages/home/image_1/4.png')
           }
         ],
         /* Slider 2 Images. title will be alt */
         images_2: [
           {
-            title: 'temp 1',
-            src: require('../assets/pages/projects/temporary-1.png')
+            title: 'Enjoy image 1',
+            src: require('../assets/pages/home/image_2/1.png')
           },
           {
-            title: 'temp 2',
-            src: require('../assets/pages/projects/temporary-0.png')
+            title: 'Enjoy image 2',
+            src: require('../assets/pages/home/image_2/2.png')
+          },
+          {
+            title: 'Enjoy image 3',
+            src: require('../assets/pages/home/image_2/3.png')
+          },
+          {
+            title: 'Enjoy image 4',
+            src: require('../assets/pages/home/image_2/4.png')
           }
         ],
         /* Slider 3 Images. title will be alt */
         images_3: [
           {
-            title: 'temp 11',
-            src: require('../assets/pages/projects/temporary-2.png')
+            title: 'Freedom image 1',
+            src: require('../assets/pages/home/image_3/1.png')
+          },
+          {
+            title: 'Freedom image 2',
+            src: require('../assets/pages/home/image_3/2.png')
+          },
+          {
+            title: 'Freedom image 3',
+            src: require('../assets/pages/home/image_3/3.png')
+          },
+          {
+            title: 'Freedom image 4',
+            src: require('../assets/pages/home/image_3/4.png')
           }
         ],
         /* Image count flags */
@@ -365,6 +390,7 @@
     width: 100%;
     height: 100%;
     z-index: 30;
+    background-size: cover;
     object-fit: cover;
   }
 
@@ -450,16 +476,17 @@
     text-align: center;
     color: #515151;
     font-family: Impact, sans-serif;
+    z-index: 2000;
   }
 
   .culture {
-    width: 100px;
-    height: 25px;
-    line-height: 25px;
-    font-weight: bold;
+    width: 100%;
     color: #fefefe;
-    background-color: darkblue;
-    margin: 0 auto 40px;
+    text-align: center;
+    margin-bottom: 50px;
+    img {
+      width: 220px;
+    }
   }
 
   .culture_wrap {
@@ -489,26 +516,26 @@
       width: 85%;
       height: 0;
       padding-bottom: 83%;
-      border-radius: 120%;
+      border-radius: 100%;
       overflow: hidden;
       float: left;
       z-index: 400;
       border: 8px solid #d60c47;
+      background-color: #fefefe;
       ul {
         width: 100%;
-        padding-bottom: 100%;
-        background-color: #ffffff;
+        //padding-bottom: 101%;
+        //background-color: #fefefe;
         li {
           position: absolute;
           top: 0;
           width: 100%;
           height: 100%;
-          background-color: azure;
           img {
-            //width: 100%; /*1 if*/
+            width: 100%; /*1 if image ration is 1:1 */
             height: 100%;
             min-height: 100%;
-            transform: translateX(-25%); /*2 else*/
+            //transform: translateX(-25%); /*2 else*/
             background-size: cover;
             object-fit: cover;
           }
@@ -538,7 +565,6 @@
       .prev-enter-active,
       .prev-leave-active {
         transition: all 700ms ease-in-out;
-        background-color: #ffffff;
       }
       .prev-enter {
         opacity: 0;
@@ -573,7 +599,7 @@
           background-color: #f0f0f0;
           border: 3px solid #ffffff;
           border-radius: 100%;
-          opacity: 0.5;
+          opacity: 0.7;
           img {
             width: 100%;
             height: 100%;
@@ -584,6 +610,10 @@
           }
           &:hover {
             opacity: 1;
+          }
+          &:active {
+            background-color: #717171;
+            transition: all 100ms ease;
           }
         }
         .prev_button {
@@ -719,6 +749,12 @@
   ===============================================
   */
   @media (max-width: 835px) {
+    .culture {
+      margin-bottom: 35px;
+      img{
+        width: 180px;
+      }
+    }
     .culture_img_wrap {
       width: 100%;
     }

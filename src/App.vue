@@ -537,7 +537,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    transition: all 370ms cubic-bezier(.83,.01,.46,.86);
+    transition: all 350ms cubic-bezier(.83,.01,.46,.86);
   } /* Overall Main Contents Area */
 
   .main_image {
@@ -579,12 +579,15 @@
     position: absolute;
     display: block;
     width: 100%;
-    top: calc(100vh - 70px);
+    top: calc(100vh - 100px);
   }
   .down_img {
-    width: 50px;
-    height: 40px;
-    filter: invert(1);
+    /*width: 50px;
+    height: 40px;*/
+    width: 80px;
+    height: 70px;
+    /* If image color is black */
+    /*filter: invert(1);*/
     animation: down_there 1500ms infinite ease-in-out;
   }
   @keyframes down_there {
